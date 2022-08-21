@@ -1,0 +1,20 @@
+{
+  "name": "creating_new_server",
+  "version": "1.0.0",
+  "description": "creating our first nodeJS server",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Official-Triranjan26/creating_new_server.git"
+  },
+  "author": "Triranjan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Official-Triranjan26/creating_new_server/issues"
+  },
+  "homepage": "https://github.com/Official-Triranjan26/creating_new_server#readme"
+}

@@ -1,0 +1,39 @@
+|||||CONTAINS|||||
+	1.what is json file?
+	2.how to create package.json file?/steps for creating package,json file.
+	3.what is npm?
+	4.how to start the server with node driver and npm?
+
+//////////What is JSON file used for?
+
+JavaScript Object Notation (JSON) is a standard text-based format for representing structured data based on JavaScript object syntax. It is commonly used for transmitting data in web applications
+
+
+////////steps for creating package.JSON file in my project :
+
+npm init
+	then it will ask for below fields
+package name:default
+verson:default
+description:Our first node.js surver
+entry point:server.js
+test command:-----
+git repository:default
+keywords:-------
+author:Triranjan
+lisence:------
+yes :default
+
+done....it will create a package.json file in my project
+
+	package.json : stetup file for your server ,tells additional details about our application
+
+////npm: node package manager 
+
+///starting server : node server.js(using node driver)
+		   :npm start(using npm // start is a default script)
+		   :npm run runThis(using npm// runThis is a user defined script)
+	**note: when we use user defined script we have to use additional "run" in the command
+
+
+
