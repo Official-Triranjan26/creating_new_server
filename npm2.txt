@@ -1,0 +1,17 @@
+ what are node packeges?why needed?
+
+in package.json go to scripts and add  -> "dev" : "nodemon server.js"
+
+command to run the server:
+previously : npm start (used for deploying perpose)
+now	   : npm run dev ("run" because "dev" is not a default scropt) (used for development perpose)
+
+whenever we install a third party package , it will get added to the depedencies in package.json
+
+if we delete the package-log.json and node_modeules we can re install them easily.Just go the terminal and write "npm i"
+that's it ,it will install all the packages which are present in dependencies of package.json
+
+package-log.json : it is a mentinence file : it keeps the track of  the depentencies of packages which are getting installed
+
+
+		   
