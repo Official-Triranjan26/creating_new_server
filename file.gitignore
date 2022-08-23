@@ -1,0 +1,3 @@
+# exclude this files from uploading on github
+node_modules
+package-lock.json
