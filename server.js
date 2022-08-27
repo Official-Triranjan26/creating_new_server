@@ -1,39 +1,72 @@
-const http = require('http');
+const express = require('express');
+
+//initilization
+const app=express(); 
+app.use(express.json());//application will use json for data transfar
+
 const port=8081;
-const toDoList=["React","Angular"];
-http
-    .createServer((req, res)=> {//callback function ,the function means now it is capable of taking requests and sending sesponses 
-    const {method,url}=req;
-    // console.log(method,url);
-    if(url=="/todos"){
-        if(method=="GET"){
-            res.writeHead(200,{"Content-Type":"text/html"});
-            res.write(toDoList.toString());
-        }
-        else if(method=="POST"){
-            let body="";
-            req
-                .on("error",(err)=>{
-                    console.log(err);
-                })
-                .on("data",(chunk)=>{
-                    body=body+chunk;
-                    console.error(chunk);
-                })
-                .on("end",()=>{
-                    body=JSON.parse(body);
-                    console.log("data :",body);
-                })
-        }
-        else{
-            res.writeHead(501);
-        }
-    }
-    else{
-        res.writeHead(404);
-    }
-    res.end();
-    })
-    .listen(port,()=>{//callback function
-        console.log(`Nodejs server is stsrted on port ${port}`);
+const toDoList=["React","Angular","Express"];
+
+app.get("/todos",(req,res)=>{
+    // res.send(200,{"Content-Type":"text/html"});
+    // res.type('text/html');
+    res.status(200).send(toDoList);
+})
+
+app.post("/todos",(req,res)=>{
+    let newToDoItem=req.body.item;
+    toDoList.push(newToDoItem);
+    res.status(201).send({
+        // message :"Task added successfully ",
+        message : `Updated list ${toDoList}`
     });
+});
+
+app.delete("/todos",(req,res)=>{
+    let itemToDelete=req.body.item;
+    for (let i = 0; i < toDoList.length; i++) {
+        if (toDoList[i] === itemToDelete) {
+          toDoList.splice(i, 1);
+          res.status(202).send({
+            message: `Deleted item - ${req.body.item}`
+            })
+            break;
+        };
+      }
+    res.send({
+        message: "Item not found !!"
+    });
+
+    // toDoList.find((element,index)=>{
+    //     if(element===itemToDelete){
+    //         toDoList.splice(index, 1);
+    //         res.status(202).send({
+    //             message: `Deleted item - ${req.body.item}`
+    //           });
+    //     }
+    //     else{
+    //         res.sendStatus(202).send({
+    //             message: "Item not found !!"
+    //           });
+    //     }
+    // });
+    
+});
+
+// put, patch // all the other methods on a particular route
+app.all("/todos", (req, res) => {
+    res.status(501).send({
+        message :"fetal error !!"
+    });
+  });
+  
+  // all the other routers
+  app.all("*", (req, res) => {
+    res.status(404).send();
+  });
+
+app.listen(port,()=>{
+    console.log(`Node js server started on port ${port}`);
+})
+// I have tuned the code a little bit,the original code link is below-->
+// https://github.com/aditya12gusain/creating-first-servere-10567/blob/todo-server-express/server.js
